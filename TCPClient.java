@@ -18,10 +18,10 @@ class TCPClient {
         Socket clientSocket = new Socket(serverIP, 9614); //Uses IP to connect to my computer's server
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        String sentence = JOPI("What would you like to ask Nick?");
+        String sentence = JOPI("Enter your username");
         outToServer.writeBytes(sentence + '\n');
-        String modifiedSentence = inFromServer.readLine();
-        JOPM("Nick: " + modifiedSentence);
+        String name = inFromServer.readLine();
+        JOPM(name + ": ");
     }
 
     public static String JOPI(String m) {
