@@ -15,7 +15,7 @@ class TCPMainClient {
         InetAddress client = connection.getInetAddress(); 
         String clientName = inFromClient.readLine();
         int ui = -1, oi = -1;
-        char ulost; //U = The main client and O = The opposing client
+        char uwon; //U = The main client and O = The opposing client
         String output;
         
         outToClient.writeBytes(JOPI("Enter your username") + "\n");
@@ -49,10 +49,10 @@ class TCPMainClient {
                     oi = 2;
                     break;
             }
-            ulost = ((oi > ui && oi != 2 && ui != 0) || (oi == 0 && ui == 2)) ? 'l' : (oi == ui) ? 't' : 'w';
-            output = (ulost == 'w') ? "You lost!" : (ulost == 't') ? "You tied!" : "You won!";
+            uwon = ((ui > oi && ui !=0 && oi == 2) || (ui == 0 && oi == 2)) ? 'w' : (ui == oi) ? 't' : 'l';
+            output = (uwon == 'w') ? "You lost!" : (uwon == 't') ? "You tied!" : "You won!";
             outToClient.writeBytes(output + "\n");
-            output = (ulost == 'w') ? "You won!" : (ulost == 't') ? "You tied!" : "You lost!";
+            output = (uwon == 'w') ? "You won!" : (uwon == 't') ? "You tied!" : "You lost!";
             JOPM(output);
         }
     }
