@@ -21,10 +21,19 @@ class TCPClient {
         String sentence = JOPI("Enter your username");
         outToServer.writeBytes(sentence + '\n');
         String name = inFromServer.readLine();
-        String uinput = JOPI("You're playing Rock, Paper, Scissors with " + name + ", if you don't understand the rules, you're probably not intelligent enough to play this game to begin with. Anyways, Enter your choice: ");
+        String output = JOPI("You're playing Rock, Paper, Scissors with " + name + ". Please enter your move...");
+        output.toLowerCase();
+        char move = output.charAt(0);
+        while (move != 'r' && move != 'p' && move != 's') {
+            output = JOPI("Please enter a valid move (Rock, Paper, or Scissors)...");
+            output.toLowerCase();
+            move = output.charAt(0);
+        }
+        outToServer.writeBytes(new String("" + move));
         
+        JOPM(inFromServer.readLine());
     }
-    
+
     public static String JOPI(String m) {
         String r = JOptionPane.showInputDialog(null, m);
         return r;
