@@ -12,21 +12,11 @@ class TCPMainClient {
             Socket connectionSocket = welcomeSocket.accept();
             BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
             DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
-            clientSentence = inFromClient.readLine();
 
             InetAddress client = connectionSocket.getInetAddress(); 
-            String clientName = "John Doe";
-            if (client.toString().equals("192.168.1.241")) {
-                clientName = "Isaiah"; 
-            } else if (client.toString().equals("192.168.1.241")) {
-                clientName = "Ben"; 
-            }  else if (client.toString().equals("192.168.1.241")) {
-                clientName = "Ryan"; 
-            }
+            String clientName = inFromClient.readLine();;
 
-            JOPM(clientName + ": " + clientSentence);
-
-            outToClient.writeBytes(JOPI("How would you like to respond to " + clientName + "?"));
+            outToClient.writeBytes(JOPI("Please tell " + clientName + " your username?"));
         }
     }
 
