@@ -7,7 +7,7 @@ class TCPClient {
     public static void main(String argv[]) throws Exception {
         boolean linkEstablished = false; 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in)); //Gives the ability to read the user's sentence
-        InetAddress serverIP = InetAddress.getByName("PiGuyPC"); //Gets my IP and stores it
+        InetAddress serverIP = InetAddress.getByName("192.168.1.82"); //Gets my IP and stores it
         linkEstablished = serverIP.isReachable(500); //Checks if I can be connected to other PC
         while (!linkEstablished) { //If I'm unavailable, this will explain it
             JOPM("Sorry but there is an error. We cannot currently connect to Nick's PC. \nPlease try again later...");
