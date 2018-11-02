@@ -21,9 +21,10 @@ class TCPClient {
         String sentence = JOPI("Enter your username");
         outToServer.writeBytes(sentence + '\n');
         String name = inFromServer.readLine();
-        JOPM(name + ": ");
+        String uinput = JOPI("You're playing Rock, Paper, Scissors with " + name + ", if you don't understand the rules, you're probably not intelligent enough to play this game to begin with. Anyways, Enter your choice: ");
+        
     }
-
+    
     public static String JOPI(String m) {
         String r = JOptionPane.showInputDialog(null, m);
         return r;
