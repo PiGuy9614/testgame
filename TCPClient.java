@@ -18,8 +18,8 @@ class TCPClient {
         Socket clientSocket = new Socket(serverIP, 9614); //Uses IP to connect to my computer's server
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        String sentence = JOPI("Enter your username");
-        outToServer.writeBytes(sentence + '\n');
+        String myUsername = JOPI("Enter your username...");
+        outToServer.writeBytes(myUsername + '\n');
         String name = inFromServer.readLine();
         String output = JOPI("You're playing Rock, Paper, Scissors with " + name + ". Please enter your move...");
         output.toLowerCase();
@@ -29,7 +29,7 @@ class TCPClient {
             output.toLowerCase();
             move = output.charAt(0);
         }
-        outToServer.writeBytes(new String("" + move));
+        outToServer.writeBytes(new String("" + move) + '\n');
         
         JOPM(inFromServer.readLine());
     }
