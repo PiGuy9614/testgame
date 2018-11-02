@@ -3,12 +3,11 @@
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
-class TCPServer {
+class TCPMainClient {
     public static void main(String argv[]) throws Exception {
         String clientSentence;
         String capitalizedSentence;
         ServerSocket welcomeSocket = new ServerSocket(9614);
-
         while (true) {
             Socket connectionSocket = welcomeSocket.accept();
             BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
