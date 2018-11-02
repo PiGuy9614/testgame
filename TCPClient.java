@@ -19,19 +19,21 @@ class TCPClient {
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         String myUsername = JOPI("Enter your username...");
-        outToServer.writeBytes(myUsername + '\n');
+        outToServer.writeBytes(myUsername + "\n");
         String name = inFromServer.readLine();
-        String output = JOPI("You're playing Rock, Paper, Scissors with " + name + ". Please enter your move...");
-        output.toLowerCase();
-        char move = output.charAt(0);
-        while (move != 'r' && move != 'p' && move != 's') {
-            output = JOPI("Please enter a valid move (Rock, Paper, or Scissors)...");
+        while (true) {
+            String output = JOPI("You're playing Rock, Paper, Scissors with " + name + ". Please enter your move...");
             output.toLowerCase();
-            move = output.charAt(0);
+            char move = output.charAt(0);
+            while (move != 'r' && move != 'p' && move != 's') {
+                output = JOPI("Please enter a valid move (Rock, Paper, or Scissors)...");
+                output.toLowerCase();
+                move = output.charAt(0);
+            }
+            outToServer.writeBytes(new String("" + move) + "\n");
+
+            JOPM(inFromServer.readLine());
         }
-        outToServer.writeBytes(new String("" + move) + '\n');
-        
-        JOPM(inFromServer.readLine());
     }
 
     public static String JOPI(String m) {
