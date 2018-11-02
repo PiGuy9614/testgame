@@ -18,7 +18,8 @@ class TCPMainClient {
         char ulost; //U = The main client and O = The opposing client
         String output;
         
-        outToClient.writeBytes(JOPI("Please tell " + clientName + " your username?"));
+        outToClient.writeBytes(JOPI("Enter your username") + "\n");
+        exit:
         while(true) {
             String mcm = JOPI("You are playing with " + clientName + ". What is your move?");
             switch(mcm.toLowerCase().charAt(0)) {
@@ -31,6 +32,8 @@ class TCPMainClient {
                 case 's':
                     ui = 2;
                     break;
+                case 'e':
+                    break exit;
                 default:
                     mcm = JOPI("Invalid entry, enter again!");
             }
@@ -48,7 +51,7 @@ class TCPMainClient {
             }
             ulost = ((oi > ui && oi != 2 && ui != 0) || (oi == 0 && ui == 2)) ? 'l' : (oi == ui) ? 't' : 'w';
             output = (ulost == 'w') ? "You lost!" : (ulost == 't') ? "You tied!" : "You won!";
-            outToClient.writeBytes(output);
+            outToClient.writeBytes(output + "\n");
             output = (ulost == 'w') ? "You won!" : (ulost == 't') ? "You tied!" : "You lost!";
             JOPM(output);
         }
