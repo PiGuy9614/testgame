@@ -1,10 +1,10 @@
-//Nicholas Koeppen
-//Used to enhance router programming skills
+//Nicholas Koeppen & Austin Metz
+//Used to enhance router programming skills & make a fun multiplayer game
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
 class TCPMainClient {
-    public static void main(String argv[]) throws Exception {
+    public static void main() throws Exception {
         String clientSentence;
         ServerSocket welcomeSocket = new ServerSocket(9614);
         //while (true) {
@@ -49,7 +49,7 @@ class TCPMainClient {
                     oi = 2;
                     break;
             }
-            uwon = ((ui > oi && ui !=0 && oi == 2) || (ui == 0 && oi == 2)) ? 'w' : (ui == oi) ? 't' : 'l';
+            uwon = (ui > oi && !(ui == 2 && oi == 0)) ? 'w' : (ui == oi) ? 't' : 'l';
             output = (uwon == 'w') ? "You lost!" : (uwon == 't') ? "You tied!" : "You won!";
             outToClient.writeBytes(output + "\n");
             output = (uwon == 'w') ? "You won!" : (uwon == 't') ? "You tied!" : "You lost!";

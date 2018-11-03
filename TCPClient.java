@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 import javax.swing.*;
 class TCPClient {
-    public static void main(String argv[]) throws Exception {
+    public static void main(String[] args) throws Exception {
         boolean linkEstablished = false; 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in)); //Gives the ability to read the user's sentence
         String ip = JOPI("What is the Server's IP Address?"); //Takes Server IP from User input
