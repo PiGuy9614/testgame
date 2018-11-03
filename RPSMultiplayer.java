@@ -5,7 +5,7 @@ public class RPSMultiplayer {
     public static void main(String[] args) throws Exception {
         Icon icon = new ImageIcon("MonaSeaver.jpg", "Mona Seaver");
         JOptionPane.showMessageDialog(null,
-            "Insert Directions here...",
+            "It's Rock, Paper, Scissors. If you don't know it, fuck off.",
             "Multiplayer Rock, Paper, Scissors",
             JOptionPane.INFORMATION_MESSAGE, icon);
         String[] options = {"Host a Game", "Join a Game"};

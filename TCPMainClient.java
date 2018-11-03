@@ -7,18 +7,19 @@ class TCPMainClient {
     public static void main() throws Exception {
         String clientSentence;
         ServerSocket welcomeSocket = new ServerSocket(9614);
-        //while (true) {
+        InetAddress localhost = InetAddress.getLocalHost();
+        JOPM("Your IP Address is " + localhost.getHostAddress() + "\nPlease wait a second as your opponent is connecting...");
         Socket connection = welcomeSocket.accept();
         BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         DataOutputStream outToClient = new DataOutputStream(connection.getOutputStream());
-
+        
         InetAddress client = connection.getInetAddress(); 
         String clientName = inFromClient.readLine();
         int ui = -1, oi = -1;
         char uwon; //U = The main client and O = The opposing client
         String output;
         
-        outToClient.writeBytes(JOPI("Enter your username") + "\n");
+        outToClient.writeBytes(JOPI("Enter your username...") + "\n");
         exit:
         while(true) {
             String mcm = JOPI("You are playing with " + clientName + ". What is your move?");
