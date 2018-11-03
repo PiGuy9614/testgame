@@ -49,7 +49,7 @@ class TCPMainClient {
                     oi = 2;
                     break;
             }
-            uwon = (ui > oi && !(ui == 2 && oi == 0)) ? 'w' : (ui == oi) ? 't' : 'l';
+            uwon = ((ui > oi && !(ui == 2 && oi == 0)) || (ui == 0 && oi == 2)) ? 'w' : (ui == oi) ? 't' : 'l';
             output = (uwon == 'w') ? "You lost!" : (uwon == 't') ? "You tied!" : "You won!";
             outToClient.writeBytes(output + "\n");
             output = (uwon == 'w') ? "You won!" : (uwon == 't') ? "You tied!" : "You lost!";
