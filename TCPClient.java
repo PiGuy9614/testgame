@@ -7,12 +7,10 @@ class TCPClient {
     public static void main() throws Exception {
         boolean linkEstablished = false; 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in)); //Gives the ability to read the user's sentence
-        String ip = JOPI("What is the Server's IP Address?"); //Takes Server IP from User input
-        InetAddress serverIP = InetAddress.getByName(ip); //Gets my IP and stores it
+        InetAddress serverIP = InetAddress.getByName(JOPI("What is the Server's IP Address?")); //Gets my IP and stores it
         linkEstablished = serverIP.isReachable(500); //Checks if I can be connected to other PC
         while (!linkEstablished) { //If I'm unavailable, this will explain it
-            ip = JOPI("Sorry but there is an error. We cannot currently connect to this PC. Please retype the server IP..."); //Takes Server IP from User input
-            serverIP = InetAddress.getByName(ip); //Gets my IP and stores it
+            serverIP = InetAddress.getByName(JOPI("What is the Server's IP Address?")); //Gets my IP and stores it
             linkEstablished = serverIP.isReachable(500); //Checks if I can be connected to other PC
         }
         Socket clientSocket = new Socket(serverIP, 9614); //Uses IP to connect to my computer's server
