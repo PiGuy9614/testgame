@@ -8,7 +8,7 @@ public class TCPClient {
         String myUsername = JOPI("Enter your username...");
         boolean linkEstablished = false; 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in)); //Gives the ability to read the user's sentence
-        String preliminaryIP = JOPI("What is the Server's IP?");
+        String preliminaryIP = JOPI("What is the Server's IP?") + ".local";
         // InetAddress serverIP = InetAddress.getByName(preliminaryIP); //Gets my IP and stores it        
         // int connectTimes = 0;
         // linkEstablished = serverIP.isReachable(1000); //Checks if I can be connected to other PC        
