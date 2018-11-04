@@ -9,14 +9,17 @@ public class TCPClient {
         boolean linkEstablished = false; 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in)); //Gives the ability to read the user's sentence
         String preliminaryIP = JOPI("What is the Server's IP?");
-        InetAddress serverIP = InetAddress.getByName(preliminaryIP); //Gets my IP and stores it
-        linkEstablished = serverIP.isReachable(1500); //Checks if I can be connected to other PC
-        while (!linkEstablished) { //If I'm unavailable, this will explain it
-            preliminaryIP = JOPI("Please retype the Server's IP?");
-            serverIP = InetAddress.getByName(preliminaryIP); //Gets my IP and stores it
-            linkEstablished = serverIP.isReachable(1000); //Checks if I can be connected to other PC
-        }
-        Socket clientSocket = new Socket(serverIP, 9614); //Uses IP to connect to my computer's server
+        // InetAddress serverIP = InetAddress.getByName(preliminaryIP); //Gets my IP and stores it        
+        // int connectTimes = 0;
+        // linkEstablished = serverIP.isReachable(1000); //Checks if I can be connected to other PC        
+        // while (!linkEstablished) { //If I'm unavailable, this will explain it
+            // if (connectTimes == 3) {
+                // preliminaryIP = JOPI("Please retype the Server's IP...");
+                // serverIP = InetAddress.getByName(preliminaryIP); //Gets my IP and stores it
+            // }
+            // linkEstablished = serverIP.isReachable(500); //Checks if I can be connected to other PC
+        // }
+        Socket clientSocket = new Socket(preliminaryIP, 9614); //Uses IP to connect to my computer's server
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         outToServer.writeBytes(myUsername + "\n");
