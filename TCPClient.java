@@ -3,13 +3,14 @@
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
-class TCPClient {
+public class TCPClient {
     public static void main() throws Exception {
+        String myUsername = JOPI("Enter your username...");
         boolean linkEstablished = false; 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in)); //Gives the ability to read the user's sentence
         String preliminaryIP = JOPI("What is the Server's Hostname?");
         InetAddress serverIP = InetAddress.getByName(preliminaryIP + ".local"); //Gets my IP and stores it
-        linkEstablished = serverIP.isReachable(3000); //Checks if I can be connected to other PC
+        linkEstablished = serverIP.isReachable(1500); //Checks if I can be connected to other PC
         while (!linkEstablished) { //If I'm unavailable, this will explain it
             preliminaryIP = JOPI("Please retype the Server's Hostname?");
             serverIP = InetAddress.getByName(preliminaryIP + ".local"); //Gets my IP and stores it
@@ -18,7 +19,6 @@ class TCPClient {
         Socket clientSocket = new Socket(serverIP, 9614); //Uses IP to connect to my computer's server
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        String myUsername = JOPI("Enter your username...");
         outToServer.writeBytes(myUsername + "\n");
         String name = inFromServer.readLine();
         while (true) {

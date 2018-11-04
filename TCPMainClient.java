@@ -3,11 +3,12 @@
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
-class TCPMainClient {
+public class TCPMainClient {
     public static void main() throws Exception {
+        String username = JOPI("Enter your username...");
         ServerSocket welcomeSocket = new ServerSocket(9614);
-        InetAddress localhost = welcomeSocket.getInetAddress();
-        JOPM("Your IP Address is " + localhost.getHostAddress() + "\nPlease wait a second as your opponent is connecting...");
+        InetAddress localhost = InetAddress.getLocalHost();
+        //JOPM("Your IP Address is " + localhost.getHostAddress() + "\nPlease wait a second as your opponent is connecting...");
         Socket connection = welcomeSocket.accept();
         
         BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -19,7 +20,7 @@ class TCPMainClient {
         char uwon; //U = The main client and O = The opposing client
         String output;
 
-        outToClient.writeBytes(JOPI("Enter your username...") + "\n");
+        outToClient.writeBytes(username + "\n");
         exit:
         while(true) {
             String mcm = JOPI("You are playing with " + clientName + ". What is your move?");
