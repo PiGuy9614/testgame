@@ -8,12 +8,12 @@ public class TCPClient {
         String myUsername = JOPI("Enter your username...");
         boolean linkEstablished = false; 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in)); //Gives the ability to read the user's sentence
-        String preliminaryIP = JOPI("What is the Server's Hostname?");
-        InetAddress serverIP = InetAddress.getByName(preliminaryIP + ".local"); //Gets my IP and stores it
+        String preliminaryIP = JOPI("What is the Server's IP?");
+        InetAddress serverIP = InetAddress.getByName(preliminaryIP); //Gets my IP and stores it
         linkEstablished = serverIP.isReachable(1500); //Checks if I can be connected to other PC
         while (!linkEstablished) { //If I'm unavailable, this will explain it
-            preliminaryIP = JOPI("Please retype the Server's Hostname?");
-            serverIP = InetAddress.getByName(preliminaryIP + ".local"); //Gets my IP and stores it
+            preliminaryIP = JOPI("Please retype the Server's IP?");
+            serverIP = InetAddress.getByName(preliminaryIP); //Gets my IP and stores it
             linkEstablished = serverIP.isReachable(1000); //Checks if I can be connected to other PC
         }
         Socket clientSocket = new Socket(serverIP, 9614); //Uses IP to connect to my computer's server
