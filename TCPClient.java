@@ -11,7 +11,8 @@ class TCPClient {
         InetAddress serverIP = InetAddress.getByName(hostname + ".local"); //Gets my IP and stores it
         linkEstablished = serverIP.isReachable(500); //Checks if I can be connected to other PC
         while (!linkEstablished) { //If I'm unavailable, this will explain it
-            serverIP = InetAddress.getByName(JOPI("That IP is not looking for clients.\nPlease retype the Server's IP Address...")); //Gets my IP and stores it
+            hostname = JOPI("Please retype the Server's Hostname?");
+            serverIP = InetAddress.getByName(hostname + ".local"); //Gets my IP and stores it
             linkEstablished = serverIP.isReachable(500); //Checks if I can be connected to other PC
         }
         Socket clientSocket = new Socket(serverIP, 9614); //Uses IP to connect to my computer's server
